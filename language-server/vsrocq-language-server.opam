@@ -28,7 +28,7 @@ depends: [
   "ppx_yojson_conv"
   "ppx_import"
   "ppx_optcomp"
-  "memprof-limits"
+  "memprof-limits" { ocaml < "5.3" }
   "result" { >= "1.5" }
   "lsp" { >= "1.15"}
   "sel" {>= "0.6.0"}
