@@ -31,7 +31,7 @@
       in
         pkgs.rocq-core.override {
           version = rocq-master.outPath;
-          customOCamlPackages = pkgs.ocaml-ng.ocamlPackages_4_14;
+          customOCamlPackages = pkgs.ocaml-ng.ocamlPackages_5_3;
         };
     in rec {
       formatter = nixpkgs.legacyPackages.${system}.alejandra;
@@ -42,7 +42,7 @@
         vsrocq-language-server-coq-8-18 =
           # Notice the reference to nixpkgs here.
           with import nixpkgs {inherit system;}; let
-            ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+            ocamlPackages = ocaml-ng.ocamlPackages_5_3;
           in
             ocamlPackages.buildDunePackage {
               duneVersion = "3";
@@ -71,7 +71,6 @@
                   ppx_yojson_conv
                   lsp
                   sel
-                  memprof-limits
                 ]);
               propagatedBuildInputs= (with coq.ocamlPackages;
                 [
@@ -85,7 +84,7 @@
         vsrocq-language-server-coq-8-19 =
           # Notice the reference to nixpkgs here.
           with import nixpkgs {inherit system;}; let
-            ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+            ocamlPackages = ocaml-ng.ocamlPackages_5_3;
           in
             ocamlPackages.buildDunePackage {
               duneVersion = "3";
@@ -114,7 +113,6 @@
                   ppx_yojson_conv
                   lsp
                   sel
-                  memprof-limits
                 ]);
               propagatedBuildInputs= (with coq.ocamlPackages;
                 [
@@ -128,7 +126,7 @@
         vsrocq-language-server-coq-8-20 =
           # Notice the reference to nixpkgs here.
           with import nixpkgs {inherit system;}; let
-            ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+            ocamlPackages = ocaml-ng.ocamlPackages_5_3;
           in
             ocamlPackages.buildDunePackage {
               duneVersion = "3";
@@ -157,7 +155,6 @@
                   ppx_yojson_conv
                   lsp
                   sel
-                  memprof-limits
                 ]);
               propagatedBuildInputs= (with coq.ocamlPackages;
                 [
@@ -171,7 +168,7 @@
         vsrocq-language-server-rocq-9 =
           # Notice the reference to nixpkgs here.
           with import nixpkgs {inherit system;}; let
-            ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+            ocamlPackages = ocaml-ng.ocamlPackages_5_3;
           in
             ocamlPackages.buildDunePackage {
               duneVersion = "3";
@@ -200,7 +197,6 @@
                   ppx_yojson_conv
                   lsp
                   sel
-                  memprof-limits
                 ]);
               propagatedBuildInputs= (with coq.ocamlPackages;
                 [
@@ -214,7 +210,7 @@
         vsrocq-language-server-rocq-9-1 =
           # Notice the reference to nixpkgs here.
           with import nixpkgs-unstable {inherit system;}; let
-            ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+            ocamlPackages = ocaml-ng.ocamlPackages_5_3;
           in
             ocamlPackages.buildDunePackage {
               duneVersion = "3";
@@ -243,7 +239,6 @@
                   ppx_yojson_conv
                   lsp
                   sel
-                  memprof-limits
                 ]);
               propagatedBuildInputs= (with coq.ocamlPackages;
                 [
@@ -290,7 +285,6 @@
                   })
                   lsp
                   sel
-                  memprof-limits
                 ]);
               propagatedBuildInputs= (with ocamlPackages;
                 [
@@ -392,7 +386,7 @@
           };
         
         vsrocq-8-19 = with import nixpkgs {inherit system;}; let
-          ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+          ocamlPackages = ocaml-ng.ocamlPackages_5_3;
         in
           mkShell {
             buildInputs =
@@ -405,7 +399,7 @@
           };
 
         vsrocq-8-20 = with import nixpkgs {inherit system;}; let
-          ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+          ocamlPackages = ocaml-ng.ocamlPackages_5_3;
         in
           mkShell {
             buildInputs =
@@ -418,7 +412,7 @@
           };
 
         vsrocq-9 = with import nixpkgs {inherit system;}; let
-          ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+          ocamlPackages = ocaml-ng.ocamlPackages_5_3;
         in
           mkShell {
             buildInputs =
@@ -434,7 +428,7 @@
           };
 
         vsrocq-9-1 = with import nixpkgs {inherit system;}; let
-          ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+          ocamlPackages = ocaml-ng.ocamlPackages_5_3;
         in
           mkShell {
             buildInputs =
@@ -460,7 +454,7 @@
           };
 
         default = with import nixpkgs {inherit system;}; let
-          ocamlPackages = ocaml-ng.ocamlPackages_4_14;
+          ocamlPackages = ocaml-ng.ocamlPackages_5_3;
         in
           mkShell {
             buildInputs =

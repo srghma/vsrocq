@@ -88,8 +88,22 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
-        ocaml-compiler: [4.14.2]
         coq: [8.18.0, 8.19.0, 8.20.0, 9.0.0, 9.1.1, 9.2.0, dev]
+        include:
+          - coq: 8.18.0
+            ocaml-compiler: 4.14.2
+          - coq: 8.19.0
+            ocaml-compiler: 4.14.2
+          - coq: 8.20.0
+            ocaml-compiler: 4.14.2
+          - coq: 9.0.0
+            ocaml-compiler: 4.14.2
+          - coq: 9.1.1
+            ocaml-compiler: 5.5.0
+          - coq: 9.2.0
+            ocaml-compiler: 5.5.0
+          - coq: dev
+            ocaml-compiler: 5.5.0
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
@@ -115,6 +129,7 @@ jobs:
             opam pin add rocq-core ${{ matrix.coq }}  
           fi
         fi
+        opam pin add ppx_import git+https://github.com/ocaml-ppx/ppx_import.git -y
         opam pin add vsrocq-language-server ./language-server/ --with-doc --with-test -y
 
     - run: |
@@ -170,7 +185,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        ocaml-compiler: [4.14.x]
+        ocaml-compiler: [5.5]
         profile: [dev, fatalwarnings]
     runs-on: ${{ matrix.os }}
     steps:
@@ -189,6 +204,7 @@ jobs:
         opam repo add rocq-core-dev https://rocq-prover.org/opam/core-dev
         opam install dune
         opam install rocq-core=dev
+        opam pin add ppx_import git+https://github.com/ocaml-ppx/ppx_import.git -y
         opam install ./language-server/vsrocq-language-server.opam --deps-only --with-doc --with-test --ignore-constraints-on dune
       
     - name: Build vsrocq-language-server
@@ -212,7 +228,7 @@ jobs:
     - run: cd client && npm install && npm run build --workspaces
     - run: cd client && xvfb-run npm test
       env:
-        VSROCQARGS: "${{ env.vsrocqlib }}"
+        VSROCQARGS: "${{ env.VSROCQPATH }} ${{ env.vsrocqlib }}"
 
     - if: ${{ failure() }}
       run: cat /tmp/vsrocq_init_log.*
