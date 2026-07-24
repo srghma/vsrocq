@@ -21,7 +21,10 @@ module Position = struct
 
   include Lsp.Types.Position
 
-  type t = [%import: Lsp.Types.Position.t] [@@deriving sexp]
+  type t = Lsp.Types.Position.t = {
+    line : int;
+    character : int;
+  } [@@deriving sexp]
  
   let compare pos1 pos2 =
     match Int.compare pos1.line pos2.line with
@@ -36,7 +39,10 @@ module Range = struct
 
   include Lsp.Types.Range
 
-  type t = [%import: Lsp.Types.Range.t] [@@deriving sexp]
+  type t = Lsp.Types.Range.t = {
+    start : Position.t;
+    end_ : Position.t;
+  } [@@deriving sexp]
   
   let top () =
     let start = Position.{ line=0; character=0} in
@@ -79,7 +85,12 @@ end
 
 module DiagnosticSeverity = struct
 
-  type t = [%import: Lsp.Types.DiagnosticSeverity.t] [@@deriving sexp]
+  type t = Lsp.Types.DiagnosticSeverity.t =
+    | Error
+    | Warning
+    | Information
+    | Hint
+  [@@deriving sexp]
 
   let yojson_of_t v = Lsp.Types.DiagnosticSeverity.yojson_of_t v
   let t_of_yojson v = Lsp.Types.DiagnosticSeverity.t_of_yojson v

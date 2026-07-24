@@ -88,8 +88,22 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
-        ocaml-compiler: [5.5.0]
         coq: [8.18.0, 8.19.0, 8.20.0, 9.0.0, 9.1.1, 9.2.0, dev]
+        include:
+          - coq: 8.18.0
+            ocaml-compiler: 4.14.2
+          - coq: 8.19.0
+            ocaml-compiler: 4.14.2
+          - coq: 8.20.0
+            ocaml-compiler: 4.14.2
+          - coq: 9.0.0
+            ocaml-compiler: 4.14.2
+          - coq: 9.1.1
+            ocaml-compiler: 5.5.0
+          - coq: 9.2.0
+            ocaml-compiler: 5.5.0
+          - coq: dev
+            ocaml-compiler: 5.5.0
     runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout
@@ -214,7 +228,7 @@ jobs:
     - run: cd client && npm install && npm run build --workspaces
     - run: cd client && xvfb-run npm test
       env:
-        VSROCQARGS: "${{ env.vsrocqlib }}"
+        VSROCQARGS: "${{ env.VSROCQPATH }} ${{ env.vsrocqlib }}"
 
     - if: ${{ failure() }}
       run: cat /tmp/vsrocq_init_log.*

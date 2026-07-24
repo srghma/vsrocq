@@ -4,7 +4,7 @@
  (modules :standard \ vsrocqtop_proof_worker vsrocqtop_tactic_worker)
  (preprocess (pps ppx_optcomp -- -cookie "ppx_optcomp.env=env ~rocq:(Defined \"@@ROCQVERSION@@\")"))
  (preprocessor_deps vsrocq_config.mlh)
- (libraries base @@ROCQ_RUNTIME@@.sysinit @@ROCQ_RUNTIME@@.vernac @@ROCQ_RUNTIME@@.parsing lsp sel protocol language (select memprof_limits_shim.ml from (memprof-limits -> memprof_limits_shim.real.ml) (default -> memprof_limits_shim.dummy.ml))))
+ (libraries base @@ROCQ_RUNTIME@@.sysinit @@ROCQ_RUNTIME@@.vernac @@ROCQ_RUNTIME@@.parsing lsp sel protocol language (select memprof_limits_shim.ml from (memprof-limits -> memprof_limits_shim.real.ml) (-> memprof_limits_shim.dummy.ml))))
 
 (executable
  (name vsrocqtop_proof_worker)
