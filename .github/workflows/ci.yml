@@ -115,6 +115,7 @@ jobs:
             opam pin add rocq-core ${{ matrix.coq }}  
           fi
         fi
+        opam pin add ppx_import git+https://github.com/ocaml-ppx/ppx_import.git -y
         opam pin add vsrocq-language-server ./language-server/ --with-doc --with-test -y
 
     - run: |
@@ -189,6 +190,7 @@ jobs:
         opam repo add rocq-core-dev https://rocq-prover.org/opam/core-dev
         opam install dune
         opam install rocq-core=dev
+        opam pin add ppx_import git+https://github.com/ocaml-ppx/ppx_import.git -y
         opam install ./language-server/vsrocq-language-server.opam --deps-only --with-doc --with-test --ignore-constraints-on dune
       
     - name: Build vsrocq-language-server
